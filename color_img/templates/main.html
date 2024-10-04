@@ -1,0 +1,484 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Coloring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% tailwind_css %}
+</head>
+
+<body>
+    <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+            <!-- Header -->
+            <header class="flex items-center justify-between py-4 md:py-8">
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-2 text-2xl font-bold text-gray-800 md:text-3xl"
+                    aria-label="logo">
+                    <img src="{% static "images/logo_COLORIMG.png" %}" width="500" alt="Logo" class="w-auto h-16" />
+                </a>
+                <!-- logo - end -->
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex gap-8">
+                    <a href="#home" class="text-lg font-semibold text-indigo-500">Home</a>
+                    <a href="#uploadSection" class="text-lg font-medium text-gray-600 hover:text-indigo-500">Coloring
+                        Image</a>
+                    <a href="#featuresSection"
+                        class="text-lg font-medium text-gray-600 hover:text-indigo-500">Features</a>
+                    <a href="#aboutSection" class="text-lg font-medium text-gray-600 hover:text-indigo-500">About</a>
+                </nav>
+
+                <!-- Contact Us Button for Large Screens -->
+                <a href="#ContactUs"
+                    class="hidden lg:inline-block bg-indigo-500 text-white px-6 py-2 rounded-lg font-medium transition hover:bg-indigo-600">
+                    Contact Us
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="lg:hidden flex items-center text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </header>
+
+            <!-- Mobile Navigation Menu -->
+            <nav id="mobile-menu"
+                class="hidden lg:hidden flex-col bg-gray-100 py-4 rounded-lg shadow-lg absolute top-16 left-4 right-4 z-50 transition duration-300 ease-in-out transform -translate-y-20 opacity-0">
+                <a href="#home" class="block text-lg font-medium text-gray-600 py-2 px-4 hover:bg-gray-200">Home</a>
+                <a href="#uploadSection"
+                    class="block text-lg font-medium text-gray-600 py-2 px-4 hover:bg-gray-200">Coloring Image</a>
+                <a href="#featuresSection"
+                    class="block text-lg font-medium text-gray-600 py-2 px-4 hover:bg-gray-200">Features</a>
+                <a href="#aboutSection"
+                    class="block text-lg font-medium text-gray-600 py-2 px-4 hover:bg-gray-200">About</a>
+                <a href="#ContactUs"
+                    class="block text-lg font-medium text-white bg-indigo-500 py-3 px-4 rounded-lg mt-4 hover:bg-indigo-600">
+                    Contact Us
+                </a>
+            </nav>
+            
+            <!-- hero - start -->
+            <section class="bg-gray-100 py-16 mb-40 rounded-2xl">
+                <div class="container mx-auto px-4 lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+
+                    <!-- Left side: Image comparison -->
+                    <div
+                        class="max-w-xl mx-auto my-5 rounded-2xl overflow-hidden relative group bg-white shadow-2xl drop-shadow-2xl border border-gray-300">
+                        <div class="relative flex">
+                            <!-- "Before" Image -->
+                            <img class="before-image absolute top-0 left-0 w-1/2 h-full object-cover object-left"
+                                src="{% static "images/before.png" %}" alt="Before" />
+                            <!-- "After" Image -->
+                            <img class="after-image w-full h-full object-cover" src="{% static "images/after.png" %}" alt="After" />
+
+                            <!-- Divider Line -->
+                            <div
+                                class="slider-line absolute h-full w-[3px] bg-white left-1/2 transform -translate-x-1/2">
+                            </div>
+
+                            <!-- Slider Icon -->
+                            <div
+                                class="slider-icon absolute left-1/2 top-1/2 w-15 h-15 text-white transform -translate-x-1/2 -translate-y-1/2 rotate-90">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                </svg>
+                            </div>
+
+                            <!-- Slider Input -->
+                            <input type="range" class="slider absolute inset-0 opacity-0 cursor-pointer" min="0"
+                                max="100" />
+
+                            <!-- Label for "Before" -->
+                            <span
+                                class="label-before absolute top-4 left-4 z-30 text-white bg-black/30 rounded-md px-3 py-2 text-[0.85rem] text-center tracking-wider select-none opacity-0 transition-opacity duration-300 ease-[cubic-bezier(.68,.26,.58,1.22)] group-hover:opacity-100">Before</span>
+
+                            <!-- Label for "After" -->
+                            <span
+                                class="label-after absolute top-4 right-4 z-30 text-white bg-[#6b2be2] rounded-md px-3 py-2 text-[0.85rem] text-center tracking-wider select-none opacity-0 transition-opacity duration-300 ease-[cubic-bezier(.68,.26,.58,1.22)] group-hover:opacity-100">After</span>
+                        </div>
+                    </div>
+
+
+                    <!-- Right side: Text content -->
+                    <div class="text-center lg:text-left lg:col-span-2 xl:col-span-1">
+                        <h1
+                            class="mb-4 text-3xl font-extrabold leading-tight text-gray-800 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                            The Perfect Coloring Image Experience
+                        </h1>
+                        <p class="mb-6 text-lg text-gray-600 leading-relaxed">
+                            Experience high-quality coloring images like never before. Our advanced technology ensures
+                            vivid colors
+                            and smooth lines.
+                        </p>
+                        <div>
+                            <a href="#uploadSection"
+                                class="inline-block rounded-lg py-2 px-5 bg-indigo-500 text-white font-semibold shadow-lg hover:bg-indigo-600 focus-visible:ring ring-indigo-500">
+                                Get Started
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <!-- hero - end -->
+
+            <!-- File upload section - start -->
+            <section id="uploadSection" action="{% url 'upload_image' %}" class="w-full py-16 bg-gradient-to-r from-purple-600 to-indigo-600">
+                <div class="max-w-6xl mx-auto px-4 lg:px-8">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-center text-white mb-8">Upload Your Image</h2>
+                    <p class="text-center text-lg text-purple-100 mb-12">Enhance your images with vibrant colors. Start by uploading your file below.</p>
+
+                    <!-- File Upload Form -->
+                    <form id="uploadForm" action="{% url 'upload_image' %}" enctype="multipart/form-data" method="post" class="max-w-3xl mx-auto bg-white shadow-xl rounded-xl p-8 border border-gray-200 transition duration-500 hover:shadow-2xl">
+                        {% csrf_token %}
+                        <div class="mb-8">
+                            <!-- Drag and Drop Upload Section -->
+                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 bg-white border-2 border-dashed border-indigo-300 rounded-lg cursor-pointer transition-transform hover:scale-105 hover:border-indigo-500 hover:bg-gray-100">
+                                <div id="upload-progress" class="flex flex-col items-center justify-center py-6">
+                                    <!-- Initial SVG Icon (Indigo) -->
+                                    <svg id="initial-icon" class="w-12 h-12 mb-3 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    <!-- Animated Progress Bar (Initially Hidden) -->
+                                    <div id="progress-bar" class="hidden w-full h-2 bg-gray-200 rounded-full">
+                                        <div id="progress-inner" class="h-2 bg-indigo-600 rounded-full" style="width: 0%;"></div>
+                                    </div>
+                                    <!-- Green Checkmark (Initially Hidden) -->
+                                    <svg id="success-icon" class="hidden w-12 h-12 mb-3 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <!-- Uploading Text (Initially Hidden) -->
+                                    <p id="uploading-text" class="hidden mb-2 text-lg font-semibold text-gray-600">Uploading...</p>
+                                    <!-- Success and Drag/Drop Text -->
+                                    <p id="upload-text" class="text-center text-2xl font-bold text-indigo-600 mb-2">Drag & Drop your image here</p>
+                                    <p id="browse-text" class="text-sm text-center text-gray-500 ">or click to browse (PNG, JPG, JPEG, WebP)</p>
+                                </div>
+                                <input id="dropzone-file" type="file" name="image" accept="image/*" class="hidden" required />
+                            </label>
+                            
+                            
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" id="colorizeButton" class="w-full md:w-1/2 px-6 py-4 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full shadow-lg hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300">
+                                Colorize Image
+                            </button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </section>
+            <!-- File upload section - end -->
+
+            <!-- Display section - start -->
+            <section id="displaySection" class="hidden py-16 md:py-20 lg:py-24 bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 lg:px-8">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-800 mb-10">Original and Colorized Images</h2>
+
+                    <!-- Grid for Original and Colorized Images -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                        <!-- Original Image Card -->
+                        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                            <h3 class="mb-4 text-2xl font-semibold text-gray-800 ">Original Image</h3>
+                            <img id="originalImage" src="{{ original_image_url }}" alt="Original Image" class="w-full h-auto rounded-lg shadow-md border border-gray-200 ">
+                        </div>
+
+                        <!-- Colorized Image Card -->
+                        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                            <h3 class="mb-4 text-2xl font-semibold text-gray-800" >Colorized Image</h3>
+                            <img id="colorizedImage" src="{{ colorized_image_url }}" alt="Colorized Image" class="w-full h-auto rounded-lg shadow-md border border-gray-200">
+                        </div>
+                    </div>
+
+                    <!-- Download Button -->
+                    <div class="mt-12 text-center">
+                        <a href="{{ colorized_image_url }}" download="{{ download_filename }}" class="inline-block px-8 py-3 text-lg font-semibold text-white bg-indigo-600 rounded-full shadow-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 transition-all duration-300">
+                            Download Colorized Image
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- Display section - end -->
+
+            <!-- Features Section - Start -->
+            <section id="featuresSection" class="py-16 bg-gradient-to-b from-gray-50 to-white">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-8">Explore Our Cutting-Edge Features
+                    </h2>
+                    <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-12">Using deep learning, we deliver exceptional
+                        colorization accuracy, natural color reproduction, and continuous improvements with every image
+                        processed.</p>
+
+                    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+                        <!-- Feature 1: AI-Driven Precision -->
+                        <div
+                            class="p-8 bg-white shadow-lg rounded-xl transform hover:scale-105 transition duration-500">
+                            <div
+                                class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full">
+                                <!-- New SVG Icon for AI Precision -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-2-7h1v1a2 2 0 104 0v-2a1 1 0 011-1h1a2 2 0 00-2-2h-1V8a2 2 0 00-4 0v1H9a2 2 0 100 4h1v-1a2 2 0 014 0v2a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 110 2h-1a4 4 0 01-4-4v-2a1 1 0 011-1z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">AI-Driven Precision</h3>
+                            <p class="text-gray-600">Achieve pixel-perfect colorization using our advanced AI models
+                                that focus on every intricate detail of your image.</p>
+                        </div>
+
+                        <!-- Feature 2: Natural Color Reproduction -->
+                        <div
+                            class="p-8 bg-white shadow-lg rounded-xl transform hover:scale-105 transition duration-500">
+                            <div
+                                class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-green-500 to-teal-500 rounded-full">
+                                <!-- New SVG Icon for Natural Color -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm3.71 9.71a1 1 0 00-1.42 0L12 13.59l-2.29-2.3a1 1 0 00-1.42 1.42L10.59 15l-2.3 2.29a1 1 0 001.42 1.42L12 16.41l2.29 2.3a1 1 0 001.42-1.42L13.41 15l2.3-2.29a1 1 0 000-1.42z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Natural Color Reproduction</h3>
+                            <p class="text-gray-600">Experience life-like color reproduction that aligns perfectly with
+                                the natural hues, breathing life into grayscale images.</p>
+                        </div>
+
+                        <!-- Feature 3: Continuous Learning -->
+                        <div
+                            class="p-8 bg-white shadow-lg rounded-xl transform hover:scale-105 transition duration-500">
+                            <div
+                                class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full">
+                                <!-- New SVG Icon for Continuous Learning -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm3-10h-2V7a1 1 0 10-2 0v3H9a1 1 0 000 2h2v3a1 1 0 102 0v-3h2a1 1 0 100-2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Continuous Learning</h3>
+                            <p class="text-gray-600">Our AI improves with every image processed, learning and enhancing
+                                its ability to deliver even more accurate colorization results.</p>
+                        </div>
+
+                        <!-- Feature 4: Fast Processing -->
+                        <div
+                            class="p-8 bg-white shadow-lg rounded-xl transform hover:scale-105 transition duration-500">
+                            <div
+                                class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-red-500 to-pink-500 rounded-full">
+                                <!-- New SVG Icon for Fast Processing -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm2.5 14.5h-5a1 1 0 010-2h3.5l-2-2H8.5a1 1 0 110-2h2.5l2-2H9.5a1 1 0 010-2h5a1 1 0 010 2h-3.5l2 2h1.5a1 1 0 110 2h-2.5l-2 2h3.5a1 1 0 010 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Fast Processing</h3>
+                            <p class="text-gray-600">Colorize images in seconds with our optimized deep learning model
+                                designed for rapid and efficient processing.</p>
+                        </div>
+
+                        <!-- Feature 5: High Resolution -->
+                        <div
+                            class="p-8 bg-white shadow-lg rounded-xl transform hover:scale-105 transition duration-500">
+                            <div
+                                class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full">
+                                <!-- New SVG Icon for High Resolution -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm2.5 14.5h-5a1 1 0 010-2h3.5l-2-2H8.5a1 1 0 110-2h2.5l2-2H9.5a1 1 0 010-2h5a1 1 0 010 2h-3.5l2 2h1.5a1 1 0 110 2h-2.5l-2 2h3.5a1 1 0 010 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">High Resolution</h3>
+                            <p class="text-gray-600">Enjoy sharp, high-resolution results that bring out every detail in
+                                stunning quality after colorization.</p>
+                        </div>
+
+                        <!-- Feature 6: Intuitive Interface -->
+                        <div
+                            class="p-8 bg-white shadow-lg rounded-xl transform hover:scale-105 transition duration-500">
+                            <div
+                                class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full">
+                                <!-- New SVG Icon for Intuitive Interface -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm2.5 14.5h-5a1 1 0 010-2h3.5l-2-2H8.5a1 1 0 110-2h2.5l2-2H9.5a1 1 0 010-2h5a1 1 0 010 2h-3.5l2 2h1.5a1 1 0 110 2h-2.5l-2 2h3.5a1 1 0 010 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Intuitive Interface</h3>
+                            <p class="text-gray-600">An easy-to-use, intuitive interface makes image colorization a
+                                breeze with just a few clicks.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Features Section - End -->
+
+
+            <!-- about - start -->
+            <section id="aboutSection"
+                class="py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-indigo-600 to-indigo-700 text-white">
+                <h2
+                    class="mb-6 text-3xl font-extrabold leading-tight text-center text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                    About Us</h2>
+                <p class="max-w-3xl mx-auto mb-12 text-lg text-center">We are committed to providing the best coloring
+                    image
+                    experience for our users. Our technology ensures high-quality images with vibrant colors and smooth
+                    lines.</p>
+                <div class="max-w-3xl mx-auto grid gap-12 sm:grid-cols-2">
+                    <div class="flex flex-col justify-center items-center">
+                        {% comment %} <img src="\media\about_img_01.jpg" alt="About 01" class="w-full h-auto rounded-lg" /> {% endcomment %}
+                    </div>
+                    <div class="flex flex-col justify-center items-center">
+                        {% comment %} <img src="\media\about_img_02.jpg" alt="About 02" class="w-full h-auto rounded-lg" /> {% endcomment %}
+                    </div>
+                </div>
+            </section>
+            <!-- about - end -->
+
+            <!-- contact - start -->
+            <section id="ContactUs" class="py-16 md:py-20 lg:py-24 xl:py-28 bg-white">
+                <div class="max-w-3xl mx-auto">
+                    <h2
+                        class="mb-6 text-3xl font-extrabold leading-tight text-center text-gray-800 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                        Get In Touch</h2>
+                    <p class="text-lg text-center text-gray-600">Have questions or want to get started? Contact us and
+                        we'll get
+                        back to you as soon as possible.</p>
+                    <form class="mt-12">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" name="name" id="name"
+                                    class="mt-1 w-full px-4 py-3 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm rounded-md"
+                                    placeholder="Your Full Name" required />
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" name="email" id="email"
+                                    class="mt-1 w-full px-4 py-3 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm rounded-md"
+                                    placeholder="Your Email Address" required />
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="message" name="message"
+                                class="mt-1 resize-none w-full px-4 py-3 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm rounded-md"
+                                rows="6" placeholder="How can we assist you?" required></textarea>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit"
+                                class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!-- contact - end -->
+
+
+            <!-- Scroll Up Button -->
+            <button id="scrollUpButton" class="hidden fixed bottom-8 right-8 p-3 bg-blue-600 rounded-full text-white shadow-lg hover:bg-blue-700 transition duration-300">
+                <!-- Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                </svg>
+            </button>
+
+           
+        </div>
+    </div>
+
+
+            <!-- Footer - Start -->
+            <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-16">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6 lg:px-8 xl:px-0">
+                    <!-- Logo and About Us Section -->
+                    <div>
+                        <img src="{% static "images/logo_white_COLORIMG.png" %}" alt="Coloring Image Logo" class="h-16 mb-6">
+                        <p class="text-gray-400 leading-relaxed">
+                            At Coloring Image, we are passionate about inspiring creativity through beautiful coloring
+                            images. Our mission is to provide high-quality, fun experiences for everyone.
+                        </p>
+                    </div>
+
+                    <!-- Links Section -->
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-4">Quick Links</h2>
+                        <ul class="space-y-4">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                            </li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Services</a>
+                            </li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
+                        <p class="text-gray-400">We're here to help you bring your images to life. Contact us via:</p>
+                        <p class="mt-4 text-gray-400">Phone: +1 (555) 123-4567</p>
+                        <p class="text-gray-400">Email: support@imagecolor.com</p>
+
+                        <!-- Social Media Icons -->
+                        <div class="mt-6 flex space-x-4">
+                            <!-- Twitter Icon -->
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300" aria-label="Twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512" class="h-6 w-6">
+                                    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                                </svg>
+                            </a>
+
+                            <!-- Facebook Icon -->
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300" aria-label="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512" class="h-6 w-6">
+                                    <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+                                </svg>
+                            </a>
+
+                            <!-- Instagram Icon -->
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512" class="h-6 w-6">
+                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Divider and Copyright -->
+                <div class="mt-12 border-t border-gray-700 pt-8 text-center">
+                    <p class="text-gray-500 font-medium">
+                        &copy; 2024 Coloring Image. All rights reserved.
+                    </p>
+                    <p class="mt-4 sm:mt-0">Designed with ❤ by Amio Ghosh</p>
+                </div>
+            </footer>
+            <!-- Footer - End -->
+
+ 
+        <script src="{% static "js/MobileMenu.js" %}"></script>
+        <script src="{% static "js/ImageComparison.js" %}"></script>
+        <script src="{% static "js/fileUpload.js" %}"></script>
+        <script src="{% static "js/ScrollUpButton.js" %}"></script>
+</body>
+
+</html>
