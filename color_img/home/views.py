@@ -110,7 +110,7 @@ def upload_image(request):
 
             return render(
                 request,
-                "test_template/result.html",
+                "main.html",
                 {
                     "original_image_url": original_image_url,
                     "colorized_image_url": colorized_image_url,
@@ -132,4 +132,4 @@ def upload_image(request):
                 {"message": f"Error uploading image: {e}"},
             )
     else:
-        return render(request, "test_template/upload_form.html")
+        return render(request, "main.html")
