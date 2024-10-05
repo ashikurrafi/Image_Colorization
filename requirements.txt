@@ -1,0 +1,15 @@
+Django==4.2.16
+django-browser-reload==1.15.0
+django-tailwind==3.6.0
+keras==2.10.0
+Keras-Preprocessing==1.1.2
+numpy==1.26.4
+opencv-python==4.10.0.84
+pillow==10.4.0
+scikit-image==0.24.0
+scipy==1.13.1
+tensorboard==2.10.1
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+tensorflow==2.10.0
+tensorflow-estimator==2.10.0
