@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const browseText = document.getElementById('browse-text');
     const originalImage = document.getElementById('originalImage');
     const colorizedImage = document.getElementById('colorizedImage');
+    const downloadLink = document.getElementById('downloadLink');
 
-    // Helper function to reset the UI to the initial state
+    // Reset UI state
     function resetUI() {
         initialIcon.classList.remove('hidden');
         progressBar.classList.add('hidden');
@@ -77,9 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch(colorizeButton.form.action, {
                 method: 'POST',
-                headers: {
-                    'X-CSRFToken': csrfToken,
-                },
+                headers: { 'X-CSRFToken': csrfToken },
                 body: formData,
             });
 
@@ -88,15 +87,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
 
+                // Update images and download link
                 originalImage.src = tempDiv.querySelector('#originalImage').getAttribute('src');
                 colorizedImage.src = tempDiv.querySelector('#colorizedImage').getAttribute('src');
+                downloadLink.href = tempDiv.querySelector('#colorizedImage').getAttribute('src');
+                downloadLink.download = tempDiv.querySelector('a[download]').getAttribute('download');
+
+                // Show the display section
                 displaySection.classList.remove('hidden');
             } else {
-                uploadText.innerHTML = `<span class="text-3xl font-extrabold text-red-600">Upload Failed!</span>`;
+                uploadText.innerHTML = '<span class="text-3xl font-extrabold text-red-600">Upload Failed!</span>';
             }
         } catch (error) {
             console.error('Error:', error);
-            uploadText.innerHTML = `<span class="text-3xl font-extrabold text-red-600">Upload Failed!</span>`;
+            uploadText.innerHTML = '<span class="text-3xl font-extrabold text-red-600">Upload Failed!</span>';
         } finally {
             resetUI();
         }
