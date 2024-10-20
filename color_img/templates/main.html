@@ -184,31 +184,33 @@
             <!-- Display section - start -->
             <section id="displaySection" class="hidden py-16 md:py-20 lg:py-24 bg-gray-50">
                 <div class="max-w-6xl mx-auto px-4 lg:px-8">
-                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-800 mb-10">Original and Colorized Images</h2>
-
-                    <!-- Grid for Original and Colorized Images -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
-                        <!-- Original Image Card -->
-                        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                            <h3 class="mb-4 text-2xl font-semibold text-gray-800 ">Original Image</h3>
-                            <img id="originalImage" src="{{ original_image_url }}" alt="Original Image" class="w-full h-auto rounded-lg shadow-md border border-gray-200 ">
-                        </div>
-
-                        <!-- Colorized Image Card -->
-                        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                            <h3 class="mb-4 text-2xl font-semibold text-gray-800" >Colorized Image</h3>
-                            <img id="colorizedImage" src="{{ colorized_image_url }}" alt="Colorized Image" class="w-full h-auto rounded-lg shadow-md border border-gray-200">
-                        </div>
+                  <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-800 mb-10">
+                    Original and Colorized Images
+                  </h2>
+              
+                  <!-- Grid for Original and Colorized Images -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                    <!-- Original Image Card -->
+                    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                      <h3 class="mb-4 text-2xl font-semibold text-gray-800">Original Image</h3>
+                      <img id="originalImage" src="{{ original_image_url }}" alt="Original Image" class="w-full h-auto rounded-lg shadow-md border border-gray-200">
                     </div>
-
-                    <!-- Download Button -->
-                    <div class="mt-12 text-center">
-                        <a href="{{ colorized_image_url }}" download="{{ download_filename }}" class="inline-block px-8 py-3 text-lg font-semibold text-white bg-indigo-600 rounded-full shadow-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 transition-all duration-300">
-                            Download Colorized Image
-                        </a>
+              
+                    <!-- Colorized Image Card -->
+                    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                      <h3 class="mb-4 text-2xl font-semibold text-gray-800">Colorized Image</h3>
+                      <img id="colorizedImage" src="{{ colorized_image_url }}" alt="Colorized Image" class="w-full h-auto rounded-lg shadow-md border border-gray-200">
                     </div>
+                  </div>
+              
+                  <!-- Download Button -->
+                  <div class="mt-12 text-center">
+                    <a id="downloadLink" href="{{ colorized_image_url }}" download="{{ download_filename }}" class="inline-block px-8 py-3 text-lg font-semibold text-white bg-indigo-600 rounded-full shadow-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 transition-all duration-300">
+                      Download Colorized Image
+                    </a>
+                  </div>
                 </div>
-            </section>
+              </section>
             <!-- Display section - end -->
 
             <!-- Features Section - Start -->

@@ -83,20 +83,37 @@ def colorize_image(image_path, image_name):
     except Exception as e:
         print(f"Error processing image: {e}")
 
+def resize_image(image_path, size=(256, 256)):
+    # Open the image using OpenCV
+    img = cv2.imread(image_path)
+    if img is None:
+        raise ValueError("Invalid image file.")
+
+    # Resize the image to the desired size
+    resized_img = cv2.resize(img, size)
+
+    # Save the resized image back to the file system
+    cv2.imwrite(image_path, resized_img)
+
 
 def upload_image(request):
     if request.method == "POST" and request.FILES.get("image"):
         try:
             image_file = request.FILES["image"]
             fs = FileSystemStorage(location=os.path.join(MEDIA_ROOT, "originals"))
-            filename = fs.save(os.path.basename(image_file.name), image_file)
-            uploaded_image_path = fs.path(filename)
+            # Save the uploaded image to /media/originals temporarily
+            filename = fs.get_available_name(os.path.basename(image_file.name))
+            uploaded_image_path = fs.save(filename, image_file)
+            uploaded_image_full_path = fs.path(uploaded_image_path)
 
-            # Get the image name
-            image_name = os.path.basename(uploaded_image_path)
+            # Resize the image to 256x256 before proceeding
+            resize_image(uploaded_image_full_path, size=(256, 256))
 
-            # Colorize the uploaded image
-            colorize_image(uploaded_image_path, image_name)
+            # Get the image name for future reference
+            image_name = os.path.basename(uploaded_image_full_path)
+
+            # Call the colorize_image function with the resized image
+            colorize_image(uploaded_image_full_path, image_name)
 
             # Provide the colorized image URL to the template for rendering
             colorized_image_url = os.path.join(
